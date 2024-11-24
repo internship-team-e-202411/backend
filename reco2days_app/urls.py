@@ -6,4 +6,5 @@ urlpatterns = [
     path('search/', views.search_track, name='search_track'),
     path('add/', views.add_track, name='add_track'),
     path('list/', views.get_track_list, name='get_track_list'),
+    path('delete/', views.delete_track, name='delete_track'),
 ]

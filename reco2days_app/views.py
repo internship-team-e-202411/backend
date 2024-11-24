@@ -10,7 +10,6 @@ client_id = ''
 client_secret = ''
 moji = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZあいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん"
 number_of_songs = 20
-
 def search_track(request):
     tracks = []
     for i in range(number_of_songs):
@@ -80,6 +79,21 @@ def add_track(request):
         )
         track.save()
         return JsonResponse({'message': 'Track added successfully'}, json_dumps_params={'ensure_ascii': False})
+    else:
+        return JsonResponse({'error': 'Invalid request method'}, status=400, json_dumps_params={'ensure_ascii': False})
+    
+    
+#リストから曲削除  
+@csrf_exempt  
+def delete_track(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        track = Track.objects.filter(track_id=data['track_id'])
+        if track.exists():
+            track.delete()
+            return JsonResponse({'message': 'Track deleted successfully'}, json_dumps_params={'ensure_ascii': False})
+        else:
+            return JsonResponse({'error': 'Track not found'}, status=404, json_dumps_params={'ensure_ascii': False})
     else:
         return JsonResponse({'error': 'Invalid request method'}, status=400, json_dumps_params={'ensure_ascii': False})
 

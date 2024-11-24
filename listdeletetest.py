@@ -1,7 +1,7 @@
 import requests
 import json
 
-url = 'http://localhost:8000/add/'
+url = 'http://localhost:8000/delete/'
 headers = {'Content-Type': 'application/json'}
 data = {
     "song_name": "test",
@@ -9,7 +9,7 @@ data = {
     "album_name": "アルバム名2",
     "release_date": "2024-11-01",
     "duration_ms": 1234562,
-    "track_id": "2222",
+    "track_id": "1111",
     "album_image_url": "アルバム画像のURL999"
 }
 
