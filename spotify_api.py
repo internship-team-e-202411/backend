@@ -1,8 +1,8 @@
 import spotipy, webbrowser, random
 from spotipy.oauth2 import SpotifyClientCredentials
 
-client_id =""
-client_secret = ""
+client_id ="5af187ebd64a43f6814bcab19c65f922"
+client_secret = "fa6277a3d46c4ffc8a0ad0f2abf8d216"
 ccm = SpotifyClientCredentials(client_id = client_id, client_secret = client_secret)
 spotify = spotipy.Spotify(client_credentials_manager = ccm)
 moji = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZあいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん"
