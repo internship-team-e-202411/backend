@@ -1,12 +1,12 @@
 from django.db import models
 
 class Track(models.Model):
+    track_id = models.CharField(max_length=255, primary_key=True)  # 一意制約を削除
     song_name = models.CharField(max_length=255)
     artist_name = models.CharField(max_length=255)
     album_name = models.CharField(max_length=255)
-    release_date = models.DateField()
+    release_date = models.CharField(max_length=255)
     duration_ms = models.IntegerField()
-    track_id = models.CharField(max_length=255)  # 一意制約を削除
     album_image_url = models.URLField()
     
     def __str__(self):
