@@ -4,18 +4,21 @@ from .models import Track
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 from django.views.decorators.csrf import csrf_exempt
-import json
+import json, random, datetime
 
-client_id = '5af187ebd64a43f6814bcab19c65f922'
-client_secret = 'fa6277a3d46c4ffc8a0ad0f2abf8d216'
+client_id = ''
+client_secret = ''
+moji = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZあいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん"
+number_of_songs = 20
 
 def search_track(request):
-    query = request.GET.get('q', '')
-    if query:
-        sp = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials(client_id, client_secret))
-        results = sp.search(query, limit=30, type="track", market="JP", offset=0)
-        tracks = []
-        for track in results["tracks"]["items"]:
+    tracks = []
+    for i in range(number_of_songs):
+        query = moji[random.randrange(0, len(moji))]
+        if query is not None:
+            sp = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials(client_id, client_secret))
+            results = sp.search(query, limit=50, type="track", offset=0)
+            track = results["tracks"]["items"][random.randrange(0, len(results["tracks"]["items"]))]
             song_name = track["name"]  # 曲名
             artist_name = track["artists"][0]["name"]  # アーティスト名
             album_name = track["album"]["name"]  # アルバム名
@@ -58,9 +61,9 @@ def search_track(request):
                 'tempo': tempo,
                 'valence': valence
             })
-        return JsonResponse(tracks, safe=False, json_dumps_params={'ensure_ascii': False})
-    else:
-        return JsonResponse({'error': 'No query parameter provided'}, status=400, json_dumps_params={'ensure_ascii': False})
+        else:
+            return JsonResponse({'error': 'No query parameter provided'}, status=400, json_dumps_params={'ensure_ascii': False})
+    return JsonResponse(tracks, safe=False, json_dumps_params={'ensure_ascii': False})
 
 @csrf_exempt
 def add_track(request):
@@ -83,3 +86,4 @@ def add_track(request):
 def get_track_list(request):
     tracks = Track.objects.all().values()
     return JsonResponse(list(tracks), safe=False, json_dumps_params={'ensure_ascii': False})
+
