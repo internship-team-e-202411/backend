@@ -6,8 +6,8 @@ from spotipy.oauth2 import SpotifyClientCredentials
 from django.views.decorators.csrf import csrf_exempt
 import json, random, datetime
 
-client_id = '5af187ebd64a43f6814bcab19c65f922'
-client_secret = 'fa6277a3d46c4ffc8a0ad0f2abf8d216'
+client_id = 'YOUR-CLIENT-ID'
+client_secret = 'YOUR=CLIENT=SECRET'
 moji = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZあいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん"
 number_of_songs = 1
 def search_track(request):
