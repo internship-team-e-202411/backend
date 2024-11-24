@@ -9,7 +9,7 @@ import json, random, datetime
 client_id = '5af187ebd64a43f6814bcab19c65f922'
 client_secret = 'fa6277a3d46c4ffc8a0ad0f2abf8d216'
 moji = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZあいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん"
-number_of_songs = 20
+number_of_songs = 1
 def search_track(request):
     tracks = []
     for i in range(number_of_songs):
